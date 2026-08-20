@@ -1,0 +1,6 @@
+{
+  "name": "Dayaq - Psixologiya və Təlim Platforması",
+  "description": "Peşəkar psixoloq konsultasiyaları, psixologiya təlimləri və emosional sağlamlıq platforması.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
