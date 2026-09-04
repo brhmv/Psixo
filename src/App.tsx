@@ -28,6 +28,7 @@ import { HowItWorksPage } from './pages/HowItWorksPage';
 import { ForPsychologistsPage } from './pages/ForPsychologistsPage';
 import { ContactPage } from './pages/ContactPage';
 import { FaqPage } from './pages/FaqPage';
+import { PricingPage } from './pages/PricingPage';
 
 // Client Dashboard Pages
 import { DashboardOverviewPage } from './pages/dashboard/DashboardOverviewPage';
@@ -100,6 +101,8 @@ export default function App() {
           <Route path="/nece-isleyir" element={<HowItWorksPage />} />
           <Route path="/psixoloqlar-ucun" element={<ForPsychologistsPage />} />
           <Route path="/elaqe" element={<ContactPage />} />
+          <Route path="/qiymetler" element={<PricingPage />} />
+          <Route path="/pricing" element={<PricingPage />} />
           <Route path="/tez-tez-verilen-suallar" element={<FaqPage />} />
         </Route>
 

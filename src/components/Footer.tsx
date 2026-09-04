@@ -116,6 +116,11 @@ export const Footer: React.FC = () => {
                 </Link>
               </li>
               <li>
+                <Link to="/qiymetler" className="hover:text-[#251D4B] transition-colors font-bold text-[#251D4B]">
+                  Qiymətlər & Komissiya
+                </Link>
+              </li>
+              <li>
                 <Link to="/tez-tez-verilen-suallar" className="hover:text-[#251D4B] transition-colors">
                   Tez-Tez Verilən Suallar (FAQ)
                 </Link>

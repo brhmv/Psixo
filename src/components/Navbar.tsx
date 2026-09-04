@@ -24,7 +24,8 @@ export const Navbar: React.FC = () => {
     { name: 'Psixoloqlar', path: '/psixoloqlar' },
     { name: 'Vebinarlar', path: '/vebinarlar' },
     { name: 'Təlimlər', path: '/telimler' },
-    { name: 'Məqalələr', path: '/meqaleler' }
+    { name: 'Məqalələr', path: '/meqaleler' },
+    { name: 'Qiymətlər', path: '/qiymetler' }
   ];
 
   return (
