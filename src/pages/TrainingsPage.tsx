@@ -187,19 +187,27 @@ export const TrainingsPage: React.FC = () => {
               </div>
 
               {/* Bottom Action and Price */}
-              <div className="p-6 pt-0 flex items-center justify-between gap-3 border-t border-slate-100">
+              <div className="p-6 pt-0 flex flex-wrap items-center justify-between gap-3 border-t border-slate-100">
                 <div>
                   <span className="text-[10px] text-slate-400 font-semibold uppercase">Qiymət</span>
                   <div className="text-lg font-black text-[#251D4B]">{course.price} AZN</div>
                 </div>
 
-                <Link
-                  to={`/telimler/${course.id}`}
-                  className="px-4 py-2.5 rounded-xl text-xs font-bold text-white bg-[#251D4B] hover:bg-[#191333] transition-colors flex items-center gap-1.5 shadow-xs"
-                >
-                  <span>Təlimə Bax</span>
-                  <ArrowRight className="w-3.5 h-3.5 text-[#CADFFD]" />
-                </Link>
+                <div className="flex items-center gap-2">
+                  <Link
+                    to={`/telimler/${course.id}`}
+                    className="px-3.5 py-2 rounded-xl text-xs font-bold text-slate-700 bg-slate-100 hover:bg-slate-200 transition-colors"
+                  >
+                    Ətraflı
+                  </Link>
+                  <Link
+                    to={`/telimler/${course.id}/qeydiyyat`}
+                    className="px-4 py-2 rounded-xl text-xs font-bold text-white bg-[#251D4B] hover:bg-[#191333] transition-colors flex items-center gap-1.5 shadow-xs"
+                  >
+                    <span>Qeydiyyat</span>
+                    <ArrowRight className="w-3.5 h-3.5 text-[#CADFFD]" />
+                  </Link>
+                </div>
               </div>
             </div>
           ))}

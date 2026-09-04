@@ -290,11 +290,20 @@ export const TrainingDetailPage: React.FC = () => {
 
               {/* Primary CTA */}
               <Link
-                to={`/telimler/${course.id}/dersler`}
+                to={`/telimler/${course.id}/qeydiyyat`}
                 className="w-full py-3.5 rounded-xl text-xs font-bold text-white bg-[#251D4B] hover:bg-[#191333] transition-colors flex items-center justify-center gap-2 shadow-sm"
               >
-                <span>Təlimə Başla & Dərslərə Keç</span>
+                <span>Təlimə Qeydiyyatdan Keç</span>
                 <ArrowRight className="w-4 h-4 text-[#CADFFD]" />
+              </Link>
+
+              {/* Secondary CTA */}
+              <Link
+                to={`/telimler/${course.id}/dersler`}
+                className="w-full py-2.5 rounded-xl text-xs font-bold text-[#251D4B] bg-[#CADFFD]/30 hover:bg-[#CADFFD]/50 transition-colors flex items-center justify-center gap-2"
+              >
+                <PlayCircle className="w-4 h-4 text-[#251D4B]" />
+                <span>Önbaxış Dərslərinə Bax</span>
               </Link>
 
             </div>

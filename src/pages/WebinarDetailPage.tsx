@@ -235,11 +235,20 @@ export const WebinarDetailPage: React.FC = () => {
 
               {/* Primary CTA */}
               <Link
-                to={`/vebinarlar/${webinar.id}/canli`}
+                to={`/vebinarlar/${webinar.id}/qeydiyyat`}
                 className="w-full py-3.5 rounded-xl text-xs font-bold text-white bg-[#251D4B] hover:bg-[#191333] transition-colors flex items-center justify-center gap-2 shadow-sm"
               >
-                <span>Qeydiyyatdan keç & Otağa Daxil Ol</span>
+                <span>Vebinara Qeydiyyatdan Keç</span>
                 <ArrowRight className="w-4 h-4 text-[#CADFFD]" />
+              </Link>
+
+              {/* Secondary CTA */}
+              <Link
+                to={`/vebinarlar/${webinar.id}/canli`}
+                className="w-full py-2.5 rounded-xl text-xs font-bold text-[#251D4B] bg-[#CADFFD]/30 hover:bg-[#CADFFD]/50 transition-colors flex items-center justify-center gap-2"
+              >
+                <Video className="w-4 h-4 text-[#251D4B]" />
+                <span>Canlı Otağa Önbaxış</span>
               </Link>
 
             </div>

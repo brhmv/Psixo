@@ -12,9 +12,11 @@ import { PsychologistDetailPage } from './pages/PsychologistDetailPage';
 import { SessionBookingPage } from './pages/SessionBookingPage';
 import { WebinarsPage } from './pages/WebinarsPage';
 import { WebinarDetailPage } from './pages/WebinarDetailPage';
+import { WebinarRegistrationPage } from './pages/WebinarRegistrationPage';
 import { LiveWebinarRoomPage } from './pages/LiveWebinarRoomPage';
 import { TrainingsPage } from './pages/TrainingsPage';
 import { TrainingDetailPage } from './pages/TrainingDetailPage';
+import { TrainingRegistrationPage } from './pages/TrainingRegistrationPage';
 import { CoursePlayerPage } from './pages/CoursePlayerPage';
 import { ArticlesPage } from './pages/ArticlesPage';
 import { ArticleDetailPage } from './pages/ArticleDetailPage';
@@ -76,11 +78,15 @@ export default function App() {
           <Route path="/seans/rezervasiya" element={<SessionBookingPage />} />
           
           <Route path="/vebinarlar" element={<WebinarsPage />} />
+          <Route path="/vebinarlar/qeydiyyat" element={<WebinarRegistrationPage />} />
           <Route path="/vebinarlar/:id" element={<WebinarDetailPage />} />
+          <Route path="/vebinarlar/:id/qeydiyyat" element={<WebinarRegistrationPage />} />
           <Route path="/vebinarlar/:id/canli" element={<LiveWebinarRoomPage />} />
 
           <Route path="/telimler" element={<TrainingsPage />} />
+          <Route path="/telimler/qeydiyyat" element={<TrainingRegistrationPage />} />
           <Route path="/telimler/:id" element={<TrainingDetailPage />} />
+          <Route path="/telimler/:id/qeydiyyat" element={<TrainingRegistrationPage />} />
           <Route path="/telimler/:id/dersler" element={<CoursePlayerPage />} />
 
           <Route path="/meqaleler" element={<ArticlesPage />} />

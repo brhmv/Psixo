@@ -176,12 +176,18 @@ export const WebinarsPage: React.FC = () => {
               </div>
 
               {/* Bottom Action */}
-              <div className="p-6 pt-0">
+              <div className="p-6 pt-0 flex items-center gap-2">
                 <Link
                   to={`/vebinarlar/${web.id}`}
-                  className="w-full py-3 rounded-xl text-xs font-bold text-white bg-[#251D4B] hover:bg-[#191333] transition-colors flex items-center justify-center gap-2 shadow-xs"
+                  className="w-1/2 py-3 rounded-xl text-xs font-bold text-[#251D4B] bg-slate-100 hover:bg-slate-200 transition-colors flex items-center justify-center gap-1.5"
                 >
-                  <span>Ətraflı Bax & Qeydiyyat</span>
+                  <span>Ətraflı Bax</span>
+                </Link>
+                <Link
+                  to={`/vebinarlar/${web.id}/qeydiyyat`}
+                  className="w-1/2 py-3 rounded-xl text-xs font-bold text-white bg-[#251D4B] hover:bg-[#191333] transition-colors flex items-center justify-center gap-1.5 shadow-xs"
+                >
+                  <span>Qeydiyyat</span>
                   <ArrowRight className="w-3.5 h-3.5 text-[#CADFFD]" />
                 </Link>
               </div>

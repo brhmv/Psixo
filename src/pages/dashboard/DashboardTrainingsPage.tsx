@@ -105,7 +105,7 @@ export const DashboardTrainingsPage: React.FC = () => {
       {/* Course Cards Grid */}
       {filtered.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {filtered.map(({ course, progress, completedLessons, totalLessons, certificateIssued }) => (
+          {filtered.map(({ course, progress, completedLessons, totalLessons, certificateIssued, status }) => (
             <div
               key={course.id}
               className="bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-xs hover:border-[#CADFFD] hover:shadow-md transition-all flex flex-col justify-between"
@@ -171,15 +171,25 @@ export const DashboardTrainingsPage: React.FC = () => {
               </div>
 
               <div className="p-6 pt-0">
-                <Link
-                  to={`/dashboard/telimler/${course.id}`}
-                  className="w-full py-3 rounded-2xl text-xs font-bold text-white bg-[#251D4B] hover:bg-[#1a1435] transition-all flex items-center justify-center gap-2 shadow-xs"
-                >
-                  <PlayCircle className="w-4 h-4 text-[#CADFFD]" />
-                  <span>
-                    {progress === 100 ? 'Təlimi Təkrar İzlə' : progress > 0 ? 'Təlimə davam et' : 'Təlimə başla'}
-                  </span>
-                </Link>
+                {status === 'saved' ? (
+                  <Link
+                    to={`/telimler/${course.id}/qeydiyyat`}
+                    className="w-full py-3 rounded-2xl text-xs font-bold text-white bg-[#251D4B] hover:bg-[#1a1435] transition-all flex items-center justify-center gap-2 shadow-xs"
+                  >
+                    <PlayCircle className="w-4 h-4 text-[#CADFFD]" />
+                    <span>Qeydiyyatdan Keç və Başla</span>
+                  </Link>
+                ) : (
+                  <Link
+                    to={`/dashboard/telimler/${course.id}`}
+                    className="w-full py-3 rounded-2xl text-xs font-bold text-white bg-[#251D4B] hover:bg-[#1a1435] transition-all flex items-center justify-center gap-2 shadow-xs"
+                  >
+                    <PlayCircle className="w-4 h-4 text-[#CADFFD]" />
+                    <span>
+                      {progress === 100 ? 'Təlimi Təkrar İzlə' : progress > 0 ? 'Təlimə davam et' : 'Təlimə başla'}
+                    </span>
+                  </Link>
+                )}
               </div>
             </div>
           ))}
