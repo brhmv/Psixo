@@ -91,20 +91,20 @@ export const ForPsychologistsPage: React.FC = () => {
         <div className="p-8 rounded-3xl bg-gradient-to-r from-[#251D4B] to-[#1e173e] text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-md">
           <div className="space-y-2">
             <span className="px-3 py-1 rounded-full bg-white/10 text-[#CADFFD] text-[11px] font-black uppercase tracking-wider">
-              Şəffaf Komissiya Modeli
+              Mütəxəssis Pul Ödəmir · 0 ₼ Abunə
             </span>
             <h3 className="text-xl sm:text-2xl font-black">
-              Yalnız Qazandığınız Zaman Komissiya Ödəyin
+              Pulsuz Paylaşın, Yalnız Satışdan 10% Komissiya
             </h3>
             <p className="text-xs sm:text-sm text-slate-300 max-w-xl">
-              Sabit məcburi abunə yoxdur (0 ₼). Hər ödənişdən cəmi 5%–15% şəffaf komissiya faizi. Qazancınızı dərhal hesablayın.
+              Seans, vebinar və təlimlərinizi ödənişsiz yerləşdirin. İstifadəçilər qoşulduqda anlıq ödəniş edir — 90% birbaşa sizin xalis qazancınız olur, 10% platformaya ayrılır.
             </p>
           </div>
           <Link
             to="/qiymetler"
             className="px-5 py-3 rounded-xl bg-white text-[#251D4B] hover:bg-[#CADFFD] text-xs font-black shrink-0 transition-colors shadow-xs"
           >
-            Tarifləri və Komissiyanı Hesabla
+            Qazancı və Komissiyanı Hesabla
           </Link>
         </div>
 

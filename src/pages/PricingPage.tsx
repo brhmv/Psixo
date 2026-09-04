@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { Breadcrumbs } from '../components/Breadcrumbs';
 import {
   CheckCircle2,
-  HelpCircle,
   Percent,
   Sparkles,
   Calculator,
@@ -18,45 +17,20 @@ import {
   Award,
   Building,
   Check,
-  X,
   ChevronDown,
-  Info
+  Wallet,
+  Coins,
+  Send,
+  Lock,
+  Layers
 } from 'lucide-react';
 
 export const PricingPage: React.FC = () => {
   // Tab state: 'psychologist' | 'client'
   const [activeTab, setActiveTab] = useState<'psychologist' | 'client'>('psychologist');
 
-  // Calculator State for Psychologists
-  const [sessionPrice, setSessionPrice] = useState<number>(50);
-  const [monthlySessions, setMonthlySessions] = useState<number>(30);
-  const [selectedPlanTier, setSelectedPlanTier] = useState<'standard' | 'pro' | 'academy'>('pro');
-
-  // FAQ open states
+  // FAQ open state
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
-
-  // Commission Rates
-  const commissionRates = {
-    standard: 0.15, // 15%
-    pro: 0.10,      // 10%
-    academy: 0.05   // 5%
-  };
-
-  const monthlyFee = {
-    standard: 0,
-    pro: 29,
-    academy: 69
-  };
-
-  // Calculator computations
-  const grossRevenue = sessionPrice * monthlySessions;
-  const currentCommissionRate = commissionRates[selectedPlanTier];
-  const commissionAmount = Math.round(grossRevenue * currentCommissionRate);
-  const netEarnings = Math.max(0, grossRevenue - commissionAmount - monthlyFee[selectedPlanTier]);
-  
-  // Potential savings comparing to Standard 15%
-  const standardNet = Math.round(grossRevenue * (1 - commissionRates.standard));
-  const additionalBenefit = netEarnings - standardNet;
 
   const toggleFaq = (index: number) => {
     setOpenFaqIndex(openFaqIndex === index ? null : index);
@@ -64,66 +38,66 @@ export const PricingPage: React.FC = () => {
 
   const psychologistFaqs = [
     {
-      q: 'DAYAQ platformasında komissiya necə və nə vaxt tutulur?',
-      a: 'Komissiya hər bir uğurlu seans, vebinar və ya video kurs satışı baş tutduğu anda avtomatik hesablanır. Sizdən heç vaxt əvvəlcədən nağd və ya riskli ödəniş tələb olunmur; sadəcə qazanılan məbləğdən müvafiq faiz çıxılır və xalis vəsait dərhal çıxarış balansınıza əlavə olunur.'
+      q: 'Mütəxəssis (psixoloq/təlimçi) kimi qeydiyyat və paylaşım üçün hər hansı pul ödəməliyəmmi?',
+      a: 'Qətiyyən xeyr! Psixoloq və mütəxəssislər üçün platformaya qoşulmaq, profil açmaq, fərdi seans cədvəli qurmaq, canlı vebinar və ya video təlim paylaşmaq 100% PULSUZDUR (0 ₼ abunə haqqı). Heç bir ilkin xərc və ya risk yoxdur.'
     },
     {
-      q: 'Qazandığım vəsaiti bank kartıma və ya hesabıma necə çıxara bilərəm?',
-      a: 'Balansınızdakı vəsait hər həftənin bazar ertəsi avtomatik olaraq profilinizdə qeyd etdiyiniz istənilən Azərbaycan bankının IBAN hesabına köçürülür. Həmçinin istədiyiniz an şəxsi kabinetdən təcili çıxarış sorğusu göndərə bilərsiniz.'
+      q: 'Ödəniş və 10% komissiya mexanizmi necə işləyir?',
+      a: 'Siz seans, vebinar və ya təliminizi istədiyiniz qiymətlə paylaşırsınız. İstifadəçi ona qoşulmaq üçün saytda bank kartı ilə anlıq ödəniş etdikdə, məbləğin 10%-i platforma xidmət haqqı kimi tutulur, qalan 90%-i isə birbaşa sizin şəxsi kabinet balansınıza yatırılır.'
     },
     {
-      q: 'Pasiyent seansı ləğv etdikdə komissiya necə tənzimlənir?',
-      a: 'Əgər seans pasiyent tərəfindən qaydalara uyğun vaxtında ləğv edilərsə və ya mütəxəssis tərəfindən təxirə salınarsa, heç bir komissiya tutulmur. Pasiyent seansa xəbərdarlıq etmədən gəlmədikdə isə platforma qaydalarına uyğun olaraq müəyyən edilmiş təzminat mütəxəssisin balansına köçürülür.'
+      q: 'Balansımdakı qazancı bank kartıma və ya hesabıma necə çıxarıram?',
+      a: 'Balansınızda toplanan xalis vəsait hər həftə avtomatik olaraq profilinizdə qeyd etdiyiniz istənilən Azərbaycan bankının IBAN hesabına köçürülür. Həmçinin istədiyiniz an şəxsi kabinetdən "Çıxarış Sorğusu" göndərə bilərsiniz.'
     },
     {
-      q: 'Aylıq Pro və ya Akademiya tarifini istənilən vaxt dəyişə və ya ləğv edə bilərəmmi?',
-      a: 'Bəli! Siz istənilən vaxt şəxsi kabinetinizin "Tənzimləmələr" bölməsindən tarif planınızı Standart (0 ₼/ay) rejimə qaytara və ya digər plana yüksəldə bilərsiniz. Heç bir cərimə və ya gizli öhdəlik yoxdur.'
+      q: 'Müştəri seansı ləğv etdikdə və ya seansa gəlmədikdə nə baş verir?',
+      a: 'Əgər seans qaydalara uyğun vaxtında ləğv edilərsə və ya mütəxəssis tərəfindən təxirə salınarsa, heç bir komissiya tutulmur və məbləğ müştəriyə qaytarılır. Müştəri xəbərdarlıq etmədən seansa qoşulmadıqda isə platforma qaydalarına uyğun təzminat mütəxəssisə ödənilir.'
     },
     {
-      q: 'Öz vebinar və video kurslarımı satarkən komissiya fərqlidirmi?',
-      a: 'Xeyr, seçdiyiniz tarif planındakı eyni şəffaf komissiya faizi həm fərdi seanslara, həm canlı vebinarlara, həm də video təlimlərin satışına şamil edilir.'
+      q: 'Vebinar və video kursların satışında da komissiya eynidirmi?',
+      a: 'Bəli, DAYAQ platformasında bütün xidmətlər (fərdi konsultasiyalar, qrup vebinarları və video təlimlər) üçün vahid və şəffaf 10% komissiya siyasəti tətbiq olunur. Siz hər satışdan xalis 90% gəlir əldə edirsiniz.'
     }
   ];
 
   const clientFaqs = [
     {
       q: 'Müştərilər üçün seans ödənişinə əlavə gizli xidmət haqqı və ya komissiya varmı?',
-      a: 'Xeyr, qətiyyən! Müştərilər və pasiyentlər üçün heç bir gizli xərc və ya platforma komissiyası yoxdur. Saytda gördüyünüz seans, vebinar və kurs qiymətləri son və yekun məbləğdir.'
+      a: 'Xeyr, qətiyyən! Müştərilər və pasiyentlər üçün heç bir gizli xərc və ya əlavə komissiya yoxdur. Saytda gördüyünüz seans, vebinar və kurs qiyməti ödəyəcəyiniz son və yekun məbləğdir.'
     },
     {
-      q: 'Ödənişlərin təhlükəsizliyinə necə zəmanət verilir?',
-      a: 'Bütün ödənişlər 3D Secure təhlükəsizlik protokolu ilə Azərbaycanın aparıcı bank prosessinq sistemləri vasitəsilə qorunur. Kart məlumatlarınız heç bir halda platformada saxlanılmır.'
+      q: 'Ödəniş anlıqdırmı və necə təmin edilir?',
+      a: 'Bəli, seansı təyin etdiyiniz və ya təlimə qeydiyyatdan keçdiyiniz an ödəniş 3D Secure təhlükəsizlik sistemi ilə bank kartınız vasitəsilə dərhal həyata keçirilir və təsdiq qəbzi şəxsi kabinetinizə göndərilir.'
     },
     {
-      q: 'Ödəniş etdiyim seansı təxirə sala və ya geri qaytara bilərəmmi?',
-      a: 'Seansın başlanmasına ən azı 12 saat qalmış şəxsi kabinetinizdən görüşün vaxtını ödənişsiz dəyişə və ya tam məbləğdə geri qaytarılma ilə ləğv edə bilərsiniz.'
+      q: 'Ödəniş etdiyim seansı dəyişə və ya ləğv edə bilərəmmi?',
+      a: 'Seansın başlamasına ən azı 12 saat qalmış şəxsi kabinetinizdən görüşün vaxtını ödənişsiz dəyişə və ya tam məbləğdə geri qaytarılma ilə ləğv edə bilərsiniz.'
     },
     {
-      q: 'Şirkətlər və korporativ müştərilər üçün xüsusi paketlər mövcuddurmu?',
-      a: 'Bəli, əməkdaşların psixoloji rifahını dəstəkləmək istəyən korporativ şirkətlər üçün B2B müqavilələr, fərdi endirimli sessiya paketləri və qrup təlimləri təşkil edirik.'
+      q: 'Korporativ şirkətlər üçün əməkdaş dəstək paketləri mövcuddurmu?',
+      a: 'Bəli! Şirkətlər üçün B2B müqavilələr, işçilər üçün fərdi psixoloji dəstək və komanda treninqləri təşkil edirik.'
     }
   ];
 
   return (
     <div className="bg-slate-50/50 min-h-screen pb-24">
       
-      {/* Top Breadcrumb & Hero Header */}
-      <div className="bg-white border-b border-slate-200 py-10 sm:py-14">
+      {/* Top Hero Section */}
+      <div className="bg-white border-b border-slate-200 py-10 sm:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Breadcrumbs items={[{ label: 'Qiymətlər və Komissiya' }]} />
+          <Breadcrumbs items={[{ label: 'Qiymətlər və Ödəniş Sistemi' }]} />
 
           <div className="mt-6 text-center max-w-3xl mx-auto space-y-4">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#CADFFD]/40 text-[#251D4B] text-xs font-bold border border-[#CADFFD]">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#CADFFD]/40 text-[#251D4B] text-xs font-bold border border-[#CADFFD]">
               <Sparkles className="w-3.5 h-3.5 text-[#251D4B]" />
-              <span>Şəffaf və Ədalətli Qiymət Siyasəti</span>
+              <span>Şəffaf Komissiya və Anlıq Ödəniş Modeli</span>
             </div>
             
             <h1 className="text-3xl sm:text-5xl font-black text-[#251D4B] tracking-tight leading-tight">
-              Gizli Xərc Yoxdur. Yalnız Nəticəyə Əsaslanan Model.
+              Mütəxəssis Pul Ödəmir. Yalnız Satışdan 10% Komissiya.
             </h1>
 
             <p className="text-sm sm:text-base text-slate-600 font-medium">
-              DAYAQ platformasında mütəxəssislər yalnız qazandıqları hər ödənişdən şəffaf faiz ödəyir, müştərilər isə 0% əlavə komissiya ilə peşəkar dəstək alır.
+              Seanslarınızı, vebinarlarınızı və təlimlərinizi <strong>0 ₼ ödənişsiz paylaşın</strong>. İstifadəçilər qoşulduqda anlıq ödəniş edir — <strong>90% birbaşa sizə</strong>, 10% platformaya ayrılır.
             </p>
 
             {/* Audience Toggle Switch */}
@@ -163,441 +137,165 @@ export const PricingPage: React.FC = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 space-y-20">
 
-        {/* ---------------- SECTION 1: PSYCHOLOGIST VIEW ---------------- */}
+        {/* ---------------- SECTION 1: PSYCHOLOGIST & SPECIALIST VIEW ---------------- */}
         {activeTab === 'psychologist' && (
           <div className="space-y-16 animate-in fade-in duration-300">
             
-            {/* Header Badge */}
-            <div className="text-center space-y-2">
-              <h2 className="text-2xl sm:text-3xl font-black text-[#251D4B]">
-                Mütəxəssislər üçün Komissiya və Abunə Modelləri
-              </h2>
-              <p className="text-xs sm:text-sm text-slate-500 max-w-2xl mx-auto">
-                Heç bir məcburi ilkin xərc olmadan başlayın. Praktikanız böyüdükcə komissiya dərəcənizi 5%-ə qədər endirin.
-              </p>
-            </div>
-
-            {/* 3 Pricing Cards */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
-              
-              {/* Card 1: Standard (0 AZN, 15% commission) */}
-              <div className="bg-white rounded-3xl border border-slate-200 p-8 shadow-xs flex flex-col justify-between hover:shadow-md transition-shadow relative">
-                <div className="space-y-6">
-                  <div>
-                    <span className="px-3 py-1 rounded-lg bg-slate-100 text-slate-700 text-[11px] font-bold uppercase tracking-wider">
-                      Başlanğıc Modeli
-                    </span>
-                    <h3 className="text-xl font-black text-[#251D4B] mt-3">Standart Mütəxəssis</h3>
-                    <p className="text-xs text-slate-500 mt-1">
-                      Yeni başlayan və ya platformanı risksiz sınamaq istəyən mütəxəssislər üçün.
-                    </p>
-                  </div>
-
-                  <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200">
-                    <div className="flex items-baseline gap-1">
-                      <span className="text-4xl font-black text-[#251D4B]">0 ₼</span>
-                      <span className="text-xs text-slate-500 font-bold">/ aylıq abunə</span>
-                    </div>
-                    <div className="mt-2 text-xs font-bold text-slate-700 flex items-center gap-1.5">
-                      <Percent className="w-4 h-4 text-[#251D4B]" />
-                      <span>Hər ödənişdən <strong>15%</strong> komissiya</span>
-                    </div>
-                  </div>
-
-                  <ul className="space-y-3 text-xs text-slate-600 font-medium">
-                    <li className="flex items-start gap-2.5">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                      <span>Mütəxəssis profili və onlayn təqvim idarəçiliyi</span>
-                    </li>
-                    <li className="flex items-start gap-2.5">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                      <span>HD Məxfi Video Otaq inteqrasiyası</span>
-                    </li>
-                    <li className="flex items-start gap-2.5">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                      <span>Təhlükəsiz kart ödənişləri və həftəlik bank çıxarışı</span>
-                    </li>
-                    <li className="flex items-start gap-2.5">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                      <span>Pasiyentlər üçün avtomatik SMS və E-poçt bildirişləri</span>
-                    </li>
-                    <li className="flex items-start gap-2.5 text-slate-400">
-                      <X className="w-4 h-4 text-slate-300 shrink-0 mt-0.5" />
-                      <span>Axtarış nəticələrində TOP önə çıxarılma</span>
-                    </li>
-                  </ul>
-                </div>
-
-                <div className="pt-8">
-                  <Link
-                    to="/qeydiyyat"
-                    className="block w-full py-3 px-4 rounded-xl text-center text-xs font-bold text-[#251D4B] bg-slate-100 hover:bg-slate-200 transition-colors"
-                  >
-                    Ödənişsiz Qeydiyyat
-                  </Link>
-                </div>
-              </div>
-
-              {/* Card 2: Pro Specialist (29 AZN, 10% commission - POPULAR) */}
-              <div className="bg-white rounded-3xl border-2 border-[#251D4B] p-8 shadow-xl flex flex-col justify-between relative transform lg:-translate-y-2">
-                <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-[#251D4B] text-[#CADFFD] px-4 py-1 rounded-full text-[11px] font-black uppercase tracking-wider shadow-sm flex items-center gap-1.5">
-                  <Sparkles className="w-3.5 h-3.5 text-[#CADFFD]" />
-                  <span>Ən Çox Seçilən</span>
-                </div>
-
-                <div className="space-y-6">
-                  <div>
-                    <span className="px-3 py-1 rounded-lg bg-[#CADFFD]/50 text-[#251D4B] text-[11px] font-black uppercase tracking-wider">
-                      Aktiv Peşəkarlar
-                    </span>
-                    <h3 className="text-xl font-black text-[#251D4B] mt-3">Pro Mütəxəssis</h3>
-                    <p className="text-xs text-slate-500 mt-1">
-                      Daimi pasiyent axını olan və gəlirini maksimumlaşdırmaq istəyən psixoloqlar.
-                    </p>
-                  </div>
-
-                  <div className="p-4 rounded-2xl bg-[#CADFFD]/20 border border-[#CADFFD]/60">
-                    <div className="flex items-baseline gap-1">
-                      <span className="text-4xl font-black text-[#251D4B]">29 ₼</span>
-                      <span className="text-xs text-slate-600 font-bold">/ aylıq</span>
-                    </div>
-                    <div className="mt-2 text-xs font-black text-emerald-700 flex items-center gap-1.5">
-                      <Percent className="w-4 h-4 text-emerald-600" />
-                      <span>Cəmi <strong>10%</strong> endirimli komissiya</span>
-                    </div>
-                  </div>
-
-                  <ul className="space-y-3 text-xs text-slate-700 font-medium">
-                    <li className="flex items-start gap-2.5">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                      <span><strong>Standart planın bütün üstünlükləri</strong></span>
-                    </li>
-                    <li className="flex items-start gap-2.5">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                      <span><strong>5% daha az komissiya</strong> (hər seansda xalis qənaət)</span>
-                    </li>
-                    <li className="flex items-start gap-2.5">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                      <span>Kataloqda və axtarışda <strong>TOP Önə Çıxarılma</strong></span>
-                    </li>
-                    <li className="flex items-start gap-2.5">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                      <span>"Verifikasiya Olunmuş Ekspert" xüsusi nişanı</span>
-                    </li>
-                    <li className="flex items-start gap-2.5">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                      <span>Gəlir analitikası və pasiyent davranış statistikası</span>
-                    </li>
-                  </ul>
-                </div>
-
-                <div className="pt-8">
-                  <Link
-                    to="/qeydiyyat"
-                    className="block w-full py-3.5 px-4 rounded-xl text-center text-xs font-black text-white bg-[#251D4B] hover:bg-[#1a1435] shadow-md transition-all flex items-center justify-center gap-2"
-                  >
-                    <span>Pro Plana Başla</span>
-                    <ArrowRight className="w-4 h-4 text-[#CADFFD]" />
-                  </Link>
-                </div>
-              </div>
-
-              {/* Card 3: Academy & VIP Trainer (69 AZN, 5% commission) */}
-              <div className="bg-white rounded-3xl border border-slate-200 p-8 shadow-xs flex flex-col justify-between hover:shadow-md transition-shadow relative">
-                <div className="space-y-6">
-                  <div>
-                    <span className="px-3 py-1 rounded-lg bg-amber-100 text-amber-800 text-[11px] font-bold uppercase tracking-wider">
-                      Təlimçi & Kurslar
-                    </span>
-                    <h3 className="text-xl font-black text-[#251D4B] mt-3">Akademiya & VIP</h3>
-                    <p className="text-xs text-slate-500 mt-1">
-                      Böyük auditoriyası olan, video kurs və kütləvi vebinar təşkil edən mütəxəssislər.
-                    </p>
-                  </div>
-
-                  <div className="p-4 rounded-2xl bg-amber-50/50 border border-amber-200/60">
-                    <div className="flex items-baseline gap-1">
-                      <span className="text-4xl font-black text-[#251D4B]">69 ₼</span>
-                      <span className="text-xs text-slate-500 font-bold">/ aylıq</span>
-                    </div>
-                    <div className="mt-2 text-xs font-bold text-amber-900 flex items-center gap-1.5">
-                      <Percent className="w-4 h-4 text-amber-700" />
-                      <span>Minimal <strong>5%</strong> komissiya faizi</span>
-                    </div>
-                  </div>
-
-                  <ul className="space-y-3 text-xs text-slate-600 font-medium">
-                    <li className="flex items-start gap-2.5">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                      <span>Pro planın bütün funksiyaları</span>
-                    </li>
-                    <li className="flex items-start gap-2.5">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                      <span>Platforma üzrə <strong>ən aşağı (5%) komissiya</strong></span>
-                    </li>
-                    <li className="flex items-start gap-2.5">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                      <span>Limitsiz video kurs və dərs materialı yükləmə</span>
-                    </li>
-                    <li className="flex items-start gap-2.5">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                      <span>Avtomatlaşdırılmış QR-kodlu rəsmi sertifikat təqdimatı</span>
-                    </li>
-                    <li className="flex items-start gap-2.5">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                      <span>Fərdi hesab meneceri və texniki prioritet</span>
-                    </li>
-                  </ul>
-                </div>
-
-                <div className="pt-8">
-                  <Link
-                    to="/qeydiyyat"
-                    className="block w-full py-3 px-4 rounded-xl text-center text-xs font-bold text-[#251D4B] bg-slate-100 hover:bg-slate-200 transition-colors"
-                  >
-                    Akademiya Planını Seç
-                  </Link>
-                </div>
-              </div>
-
-            </div>
-
-            {/* ---------------- INTERACTIVE REVENUE & COMMISSION CALCULATOR ---------------- */}
-            <div className="bg-gradient-to-br from-[#251D4B] to-[#161033] rounded-3xl p-8 sm:p-12 text-white shadow-xl relative overflow-hidden">
-              <div className="absolute right-0 top-0 translate-x-1/4 -translate-y-1/4 w-96 h-96 bg-[#CADFFD]/10 rounded-full blur-3xl pointer-events-none" />
-
-              <div className="max-w-3xl space-y-2 mb-10">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-[#CADFFD] text-xs font-bold border border-white/15">
-                  <Calculator className="w-3.5 h-3.5" />
-                  <span>İnteraktiv Qazanc və Komissiya Kalkulyatoru</span>
-                </div>
-                <h3 className="text-2xl sm:text-3xl font-black tracking-tight text-white">
-                  DAYAQ-da Nə Qədər Qazanacaqsınız?
-                </h3>
-                <p className="text-xs sm:text-sm text-slate-300">
-                  Öz seans qiymətinizi və gözlənilən həcmi seçərək xalis gəlirinizi və platforma komissiyasını hesablayın.
+            {/* 4-Step Process Cards */}
+            <div className="space-y-6">
+              <div className="text-center space-y-1">
+                <h2 className="text-2xl sm:text-3xl font-black text-[#251D4B]">
+                  Sistem Necə İşləyir?
+                </h2>
+                <p className="text-xs sm:text-sm text-slate-500">
+                  Sadə, avtomatlaşdırılmış və mütəxəssis üçün 100% risksiz ödəniş axını
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
                 
-                {/* Sliders Area */}
-                <div className="lg:col-span-7 space-y-6 bg-white/5 p-6 sm:p-8 rounded-3xl border border-white/10 backdrop-blur-xs">
-                  
-                  {/* Slider 1: Session Price */}
-                  <div className="space-y-3">
-                    <div className="flex items-center justify-between text-xs sm:text-sm font-bold">
-                      <span className="text-slate-200">1 Seansın Qiyməti:</span>
-                      <span className="text-xl font-black text-[#CADFFD]">{sessionPrice} ₼</span>
-                    </div>
-                    <input
-                      type="range"
-                      min="20"
-                      max="200"
-                      step="5"
-                      value={sessionPrice}
-                      onChange={(e) => setSessionPrice(Number(e.target.value))}
-                      className="w-full h-2 bg-white/20 rounded-lg appearance-none cursor-pointer accent-[#CADFFD]"
-                    />
-                    <div className="flex justify-between text-[11px] text-slate-400 font-medium">
-                      <span>20 ₼</span>
-                      <span>100 ₼</span>
-                      <span>200 ₼</span>
-                    </div>
+                {/* Step 1 */}
+                <div className="bg-white rounded-3xl border border-slate-200 p-6 shadow-xs relative space-y-3">
+                  <div className="w-10 h-10 rounded-2xl bg-[#CADFFD] text-[#251D4B] flex items-center justify-center font-black text-sm">
+                    1
                   </div>
-
-                  {/* Slider 2: Monthly Sessions */}
-                  <div className="space-y-3">
-                    <div className="flex items-center justify-between text-xs sm:text-sm font-bold">
-                      <span className="text-slate-200">Aylıq Keçiriləcək Seans Sayı:</span>
-                      <span className="text-xl font-black text-[#CADFFD]">{monthlySessions} seans</span>
-                    </div>
-                    <input
-                      type="range"
-                      min="5"
-                      max="100"
-                      step="5"
-                      value={monthlySessions}
-                      onChange={(e) => setMonthlySessions(Number(e.target.value))}
-                      className="w-full h-2 bg-white/20 rounded-lg appearance-none cursor-pointer accent-[#CADFFD]"
-                    />
-                    <div className="flex justify-between text-[11px] text-slate-400 font-medium">
-                      <span>5 seans</span>
-                      <span>50 seans</span>
-                      <span>100 seans</span>
-                    </div>
-                  </div>
-
-                  {/* Plan Tier Selector */}
-                  <div className="pt-2 space-y-2">
-                    <label className="text-xs font-bold text-slate-300">Müqayisə üçün Tarif Planı:</label>
-                    <div className="grid grid-cols-3 gap-2">
-                      <button
-                        type="button"
-                        onClick={() => setSelectedPlanTier('standard')}
-                        className={`p-2.5 rounded-xl border text-xs font-bold transition-colors ${
-                          selectedPlanTier === 'standard'
-                            ? 'bg-white text-[#251D4B] border-white'
-                            : 'border-white/20 text-slate-300 hover:bg-white/10'
-                        }`}
-                      >
-                        Standart (15%)
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => setSelectedPlanTier('pro')}
-                        className={`p-2.5 rounded-xl border text-xs font-bold transition-colors ${
-                          selectedPlanTier === 'pro'
-                            ? 'bg-white text-[#251D4B] border-white'
-                            : 'border-white/20 text-slate-300 hover:bg-white/10'
-                        }`}
-                      >
-                        Pro (10%)
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => setSelectedPlanTier('academy')}
-                        className={`p-2.5 rounded-xl border text-xs font-bold transition-colors ${
-                          selectedPlanTier === 'academy'
-                            ? 'bg-white text-[#251D4B] border-white'
-                            : 'border-white/20 text-slate-300 hover:bg-white/10'
-                        }`}
-                      >
-                        Akademiya (5%)
-                      </button>
-                    </div>
-                  </div>
-
+                  <h3 className="font-bold text-sm text-[#251D4B]">Pulsuz Paylaş</h3>
+                  <p className="text-xs text-slate-600 leading-relaxed">
+                    Profilinizi açın, fərdi seans qəbulu saatlarını, canlı vebinarlarınızı və video təlimlərinizi <strong>0 ₼ ödənişsiz</strong> yerləşdirin.
+                  </p>
                 </div>
 
-                {/* Calculation Summary Box */}
-                <div className="lg:col-span-5 bg-white text-slate-800 rounded-3xl p-6 sm:p-8 shadow-2xl space-y-6">
-                  <div className="space-y-1 border-b border-slate-100 pb-4">
-                    <div className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">
-                      Hesablanmış Aylıq Nəticə
-                    </div>
-                    <div className="text-3xl sm:text-4xl font-black text-emerald-700">
-                      ₼{netEarnings.toLocaleString()}
-                    </div>
-                    <div className="text-xs font-bold text-slate-600">
-                      Bank hesabınıza köçürüləcək Xalis Gəlir
-                    </div>
+                {/* Step 2 */}
+                <div className="bg-white rounded-3xl border border-slate-200 p-6 shadow-xs relative space-y-3">
+                  <div className="w-10 h-10 rounded-2xl bg-[#CADFFD] text-[#251D4B] flex items-center justify-center font-black text-sm">
+                    2
                   </div>
+                  <h3 className="font-bold text-sm text-[#251D4B]">Müştəri Anlıq Ödəyir</h3>
+                  <p className="text-xs text-slate-600 leading-relaxed">
+                    İstifadəçi seansı rezerv edəndə və ya təlimə yazılanda bank kartı ilə <strong>dərhal və anlıq</strong> ödəniş həyata keçirir.
+                  </p>
+                </div>
 
-                  <div className="space-y-2.5 text-xs">
-                    <div className="flex items-center justify-between text-slate-600">
-                      <span>Ümumi Seans Dövriyyəsi:</span>
-                      <span className="font-bold text-slate-900">₼{grossRevenue.toLocaleString()}</span>
-                    </div>
-
-                    <div className="flex items-center justify-between text-slate-600">
-                      <span>DAYAQ Komissiyası ({currentCommissionRate * 100}%):</span>
-                      <span className="font-bold text-rose-600">- ₼{commissionAmount.toLocaleString()}</span>
-                    </div>
-
-                    {monthlyFee[selectedPlanTier] > 0 && (
-                      <div className="flex items-center justify-between text-slate-600">
-                        <span>Aylıq Tarif Haqqı:</span>
-                        <span className="font-bold text-slate-700">- ₼{monthlyFee[selectedPlanTier]}</span>
-                      </div>
-                    )}
+                {/* Step 3 */}
+                <div className="bg-white rounded-3xl border-2 border-[#251D4B] p-6 shadow-md relative space-y-3 bg-[#CADFFD]/10">
+                  <div className="w-10 h-10 rounded-2xl bg-[#251D4B] text-white flex items-center justify-center font-black text-sm">
+                    3
                   </div>
+                  <div className="flex items-center justify-between">
+                    <h3 className="font-bold text-sm text-[#251D4B]">Anlıq 90% / 10% Bölgü</h3>
+                    <span className="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-black">
+                      90% Sizin
+                    </span>
+                  </div>
+                  <p className="text-xs text-slate-600 leading-relaxed">
+                    Ödəniş daxil olan saniyədə <strong>90% birbaşa sizin balansınıza</strong> oturur, cəmi 10% platforma komissiyası tutulur.
+                  </p>
+                </div>
 
-                  {/* Savings callout */}
-                  {selectedPlanTier !== 'standard' && additionalBenefit > 0 && (
-                    <div className="p-3.5 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-900 text-xs font-bold flex items-center gap-2">
-                      <TrendingUp className="w-4 h-4 text-emerald-600 shrink-0" />
-                      <span>Standart plana nisbətən hər ay <strong>+₼{additionalBenefit.toLocaleString()}</strong> əlavə xalis qazanc!</span>
-                    </div>
-                  )}
-
-                  <Link
-                    to="/qeydiyyat"
-                    className="block w-full py-3 rounded-xl bg-[#251D4B] text-white text-center text-xs font-black hover:bg-[#1a1435] transition-colors shadow-xs"
-                  >
-                    Mütəxəssis Olaraq Başla
-                  </Link>
+                {/* Step 4 */}
+                <div className="bg-white rounded-3xl border border-slate-200 p-6 shadow-xs relative space-y-3">
+                  <div className="w-10 h-10 rounded-2xl bg-[#CADFFD] text-[#251D4B] flex items-center justify-center font-black text-sm">
+                    4
+                  </div>
+                  <h3 className="font-bold text-sm text-[#251D4B]">Kartınıza Çıxarış</h3>
+                  <p className="text-xs text-slate-600 leading-relaxed">
+                    Toplanan xalis vəsait hər həftə avtomatik olaraq Azərbaycan banklarındakı <strong>IBAN hesabınıza və ya kartınıza</strong> köçürülür.
+                  </p>
                 </div>
 
               </div>
-
             </div>
 
-            {/* Feature Comparison Matrix */}
-            <div className="bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-xs space-y-6">
-              <div className="space-y-1">
-                <h3 className="text-xl font-black text-[#251D4B]">Ətraflı Funksionallıq Müqayisəsi</h3>
-                <p className="text-xs text-slate-500">Bütün tariflərdə mövcud olan və fərqlənən imkanlar</p>
+            {/* Split Highlight Hero Banner */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-white rounded-3xl border border-slate-200 p-8 sm:p-10 shadow-xs">
+              
+              <div className="lg:col-span-7 space-y-5">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 text-xs font-bold border border-emerald-200">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                  <span>0 ₼ Abunə Haqqı · 0 ₼ Məcburi Xərc</span>
+                </div>
+
+                <h2 className="text-2xl sm:text-4xl font-black text-[#251D4B] leading-tight">
+                  Siz Sadəcə Seansınızı və Təliminizi Paylaşın. Bütün Qalan İşi Biz Edirik.
+                </h2>
+
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                  DAYAQ platformasında mütəxəssislərdən heç vaxt aylıq abunə haqqı və ya reklam pulu alınmır. Biz yalnız siz pasiyent qəbul edib və ya təlim satıb gəlir əldə etdikdə xidmət haqqı (10%) qazanırıq.
+                </p>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                  <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 flex items-start gap-2.5 text-xs text-slate-700">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                    <span><strong>HD Məxfi Video Otaq</strong> və təqvim pulsuz verilir</span>
+                  </div>
+                  <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 flex items-start gap-2.5 text-xs text-slate-700">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                    <span><strong>Avtomatik SMS və E-poçt</strong> bildiriş sistemi</span>
+                  </div>
+                  <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 flex items-start gap-2.5 text-xs text-slate-700">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                    <span><strong>Təhlükəsiz Bank Şlüzü</strong> və 3D Secure inteqrasiyası</span>
+                  </div>
+                  <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 flex items-start gap-2.5 text-xs text-slate-700">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                    <span><strong>Həftəlik Bank Çıxarışı</strong> heç bir əlavə cəriməsiz</span>
+                  </div>
+                </div>
               </div>
 
-              <div className="overflow-x-auto">
-                <table className="w-full text-left text-xs border-collapse">
-                  <thead>
-                    <tr className="border-b border-slate-200 text-[#251D4B]">
-                      <th className="py-4 px-4 font-black">Xüsusiyyət</th>
-                      <th className="py-4 px-4 font-black text-center">Standart (0 ₼)</th>
-                      <th className="py-4 px-4 font-black text-center bg-[#CADFFD]/20 rounded-t-xl">Pro (29 ₼)</th>
-                      <th className="py-4 px-4 font-black text-center">Akademiya (69 ₼)</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-slate-100 font-medium">
-                    <tr>
-                      <td className="py-3.5 px-4 font-bold text-slate-700">Komissiya Faizi</td>
-                      <td className="py-3.5 px-4 text-center font-black text-[#251D4B]">15%</td>
-                      <td className="py-3.5 px-4 text-center font-black text-emerald-700 bg-[#CADFFD]/10">10%</td>
-                      <td className="py-3.5 px-4 text-center font-black text-amber-700">5%</td>
-                    </tr>
-                    <tr>
-                      <td className="py-3.5 px-4 text-slate-700">Məxfi HD Video Otaq</td>
-                      <td className="py-3.5 px-4 text-center"><Check className="w-4 h-4 text-emerald-600 mx-auto" /></td>
-                      <td className="py-3.5 px-4 text-center bg-[#CADFFD]/10"><Check className="w-4 h-4 text-emerald-600 mx-auto" /></td>
-                      <td className="py-3.5 px-4 text-center"><Check className="w-4 h-4 text-emerald-600 mx-auto" /></td>
-                    </tr>
-                    <tr>
-                      <td className="py-3.5 px-4 text-slate-700">Avtomatlaşdırılmış Qəbul Təqvimi</td>
-                      <td className="py-3.5 px-4 text-center"><Check className="w-4 h-4 text-emerald-600 mx-auto" /></td>
-                      <td className="py-3.5 px-4 text-center bg-[#CADFFD]/10"><Check className="w-4 h-4 text-emerald-600 mx-auto" /></td>
-                      <td className="py-3.5 px-4 text-center"><Check className="w-4 h-4 text-emerald-600 mx-auto" /></td>
-                    </tr>
-                    <tr>
-                      <td className="py-3.5 px-4 text-slate-700">Həftəlik Avtomatik Bank Çıxarışı</td>
-                      <td className="py-3.5 px-4 text-center"><Check className="w-4 h-4 text-emerald-600 mx-auto" /></td>
-                      <td className="py-3.5 px-4 text-center bg-[#CADFFD]/10"><Check className="w-4 h-4 text-emerald-600 mx-auto" /></td>
-                      <td className="py-3.5 px-4 text-center"><Check className="w-4 h-4 text-emerald-600 mx-auto" /></td>
-                    </tr>
-                    <tr>
-                      <td className="py-3.5 px-4 text-slate-700">Axtarış Kataloqunda TOP Önə Çıxma</td>
-                      <td className="py-3.5 px-4 text-center"><X className="w-4 h-4 text-slate-300 mx-auto" /></td>
-                      <td className="py-3.5 px-4 text-center bg-[#CADFFD]/10"><Check className="w-4 h-4 text-emerald-600 mx-auto" /></td>
-                      <td className="py-3.5 px-4 text-center"><Check className="w-4 h-4 text-emerald-600 mx-auto" /></td>
-                    </tr>
-                    <tr>
-                      <td className="py-3.5 px-4 text-slate-700">Xüsusi "Verifikasiya Olunmuş Ekspert" Nişanı</td>
-                      <td className="py-3.5 px-4 text-center"><X className="w-4 h-4 text-slate-300 mx-auto" /></td>
-                      <td className="py-3.5 px-4 text-center bg-[#CADFFD]/10"><Check className="w-4 h-4 text-emerald-600 mx-auto" /></td>
-                      <td className="py-3.5 px-4 text-center"><Check className="w-4 h-4 text-emerald-600 mx-auto" /></td>
-                    </tr>
-                    <tr>
-                      <td className="py-3.5 px-4 text-slate-700">Limitsiz Video Kurs və Dərs Paylaşımı</td>
-                      <td className="py-3.5 px-4 text-center"><X className="w-4 h-4 text-slate-300 mx-auto" /></td>
-                      <td className="py-3.5 px-4 text-center bg-[#CADFFD]/10">1 Kursa qədər</td>
-                      <td className="py-3.5 px-4 text-center font-bold text-emerald-700">Limitsiz</td>
-                    </tr>
-                    <tr>
-                      <td className="py-3.5 px-4 text-slate-700">Avtomatik QR Sertifikat Generatoru</td>
-                      <td className="py-3.5 px-4 text-center"><X className="w-4 h-4 text-slate-300 mx-auto" /></td>
-                      <td className="py-3.5 px-4 text-center bg-[#CADFFD]/10"><X className="w-4 h-4 text-slate-300 mx-auto" /></td>
-                      <td className="py-3.5 px-4 text-center"><Check className="w-4 h-4 text-emerald-600 mx-auto" /></td>
-                    </tr>
-                    <tr>
-                      <td className="py-3.5 px-4 text-slate-700">Fərdi Menecer və Prioritet Texniki Dəstək</td>
-                      <td className="py-3.5 px-4 text-center"><X className="w-4 h-4 text-slate-300 mx-auto" /></td>
-                      <td className="py-3.5 px-4 text-center bg-[#CADFFD]/10">Standart</td>
-                      <td className="py-3.5 px-4 text-center font-bold text-emerald-700">24/7 VIP Prioritet</td>
-                    </tr>
-                  </tbody>
-                </table>
+              {/* Visual Percentage Breakdown Display */}
+              <div className="lg:col-span-5 bg-gradient-to-br from-[#251D4B] to-[#171135] text-white p-6 sm:p-8 rounded-3xl shadow-xl space-y-6">
+                <div className="text-center space-y-1">
+                  <div className="text-[11px] font-bold text-slate-300 uppercase tracking-wider">
+                    Hər 100 AZN Ödənişin Bölgüsü
+                  </div>
+                  <div className="text-3xl font-black text-white">Avtomatik Şəffaf Şlüz</div>
+                </div>
+
+                <div className="space-y-4">
+                  {/* 90% Specialist */}
+                  <div className="p-4 rounded-2xl bg-emerald-500/20 border border-emerald-400/40 space-y-2">
+                    <div className="flex items-center justify-between text-xs font-black">
+                      <span className="text-emerald-300 flex items-center gap-1.5">
+                        <Wallet className="w-4 h-4" />
+                        <span>Sizin Xalis Qazancınız:</span>
+                      </span>
+                      <span className="text-xl font-black text-emerald-400">90% (90 ₼)</span>
+                    </div>
+                    <div className="w-full bg-black/30 h-2.5 rounded-full overflow-hidden">
+                      <div className="bg-emerald-400 h-full w-[90%] rounded-full" />
+                    </div>
+                    <div className="text-[11px] text-slate-300">
+                      Anında balansınıza oturur və birbaşa bank hesabınıza çıxarılır.
+                    </div>
+                  </div>
+
+                  {/* 10% Platform */}
+                  <div className="p-4 rounded-2xl bg-white/10 border border-white/20 space-y-2">
+                    <div className="flex items-center justify-between text-xs font-bold">
+                      <span className="text-slate-200 flex items-center gap-1.5">
+                        <Percent className="w-4 h-4 text-[#CADFFD]" />
+                        <span>DAYAQ Platforma Haqqı:</span>
+                      </span>
+                      <span className="text-base font-bold text-[#CADFFD]">10% (10 ₼)</span>
+                    </div>
+                    <div className="w-full bg-black/30 h-2 rounded-full overflow-hidden">
+                      <div className="bg-[#CADFFD] h-full w-[10%] rounded-full" />
+                    </div>
+                    <div className="text-[11px] text-slate-300">
+                      Server, video otaq infrastrukturu, bank prosessinq və marketinq üçün.
+                    </div>
+                  </div>
+                </div>
+
+                <Link
+                  to="/qeydiyyat"
+                  className="block w-full py-3.5 rounded-xl bg-white text-[#251D4B] text-center text-xs font-black hover:bg-[#CADFFD] transition-colors shadow-md"
+                >
+                  Ödənişsiz Qeydiyyatdan Keç
+                </Link>
               </div>
+
             </div>
 
           </div>
@@ -612,7 +310,7 @@ export const PricingPage: React.FC = () => {
                 Müştərilər üçün Xidmət və Qiymət Standartları
               </h2>
               <p className="text-xs sm:text-sm text-slate-500 max-w-2xl mx-auto">
-                Bütün xidmətlərdə 0% gizli komissiya. Gördüyünüz məbləğ ödədiyiniz yekun məbləğdir.
+                Bütün xidmətlərdə 0% gizli komissiya. Gördüyünüz məbləğ anlıq ödəyəcəyiniz yekun məbləğdir.
               </p>
             </div>
 
@@ -783,7 +481,7 @@ export const PricingPage: React.FC = () => {
               Tez-Tez Verilən Suallar (FAQ)
             </h3>
             <p className="text-xs sm:text-sm text-slate-500">
-              Maliyyə, ödəniş təhlükəsizliyi və komissiya qaydaları haqqında əsas məlumatlar.
+              Maliyyə, ödəniş təhlükəsizliyi və 10% komissiya qaydaları haqqında əsas məlumatlar.
             </p>
           </div>
 
@@ -817,17 +515,17 @@ export const PricingPage: React.FC = () => {
         {/* ---------------- SECTION 4: FINAL BOTTOM CTA ---------------- */}
         <div className="bg-gradient-to-r from-[#251D4B] to-[#1e173e] rounded-3xl p-8 sm:p-12 text-center text-white space-y-6 shadow-xl">
           <h3 className="text-2xl sm:text-4xl font-black text-white max-w-2xl mx-auto leading-tight">
-            DAYAQ Platformasında Peşəkar Fəaliyyətinizə İndi Başlayın
+            DAYAQ Platformasında Fəaliyyətinizə İndi Başlayın
           </h3>
           <p className="text-xs sm:text-sm text-slate-300 max-w-xl mx-auto">
-            100% şəffaf komissiya sistemi, avtomatlaşdırılmış kabinet və güclü pasiyent auditoriyası ilə praktikanızı zirvəyə daşıyın.
+            0 ₼ abunə haqqı, seans və təlimlərinizi ödənişsiz paylaşma imkanı və 90% xalis qazanc zəmanəti.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
             <Link
               to="/qeydiyyat"
               className="px-6 py-3.5 rounded-xl bg-white text-[#251D4B] hover:bg-slate-100 text-xs font-black shadow-md transition-all flex items-center gap-2"
             >
-              <span>Mütəxəssis Kimi Qeydiyyat</span>
+              <span>Mütəxəssis Kimi Ödənişsiz Başla</span>
               <ArrowRight className="w-4 h-4 text-[#251D4B]" />
             </Link>
             <Link
